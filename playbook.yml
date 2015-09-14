@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: install nginx on the node
+    apt: 
+      pkg: nginx
+      state: installed
+  - name: start nginx server
+    service: 
+      name: nginx
+      state: started

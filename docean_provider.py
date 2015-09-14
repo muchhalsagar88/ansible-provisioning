@@ -15,7 +15,7 @@ class DigitalOceanProvider(ServiceProvider):
 		print "creating a digital ocean instance using url: ",self.base_url
 		droplet_id = self.__create_droplet()
 		print droplet_id
-		self.__check_if_droplet_is_up(droplet_id)
+		return self.__check_if_droplet_is_up(droplet_id)
 		#self.__delete_droplet(droplet_id)
 
 	def __delete_droplet(self, id):
@@ -84,5 +84,3 @@ class DigitalOceanProvider(ServiceProvider):
 			#return json.loads(response.read())	
 		return None
 
-di = DigitalOceanProvider("https://api.digitalocean.com", "DigitalOcean")
-di.create_instance()
