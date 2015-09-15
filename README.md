@@ -42,10 +42,10 @@ agitated-einstein ansible_ssh_host=agitated-einstein.cloudapp.net ansible_ssh_us
 1. Create an account at [Azure](https://azure.microsoft.com/en-us/pricing/free-trial/ "Microsoft Azure Singup")
 2. Follow all key and certificate generation steps mentioned at this [Github Gist](https://gist.github.com/rchakra3/b6703a9d5c66e6fc9a7d) generously shared by [rchakra3](https://gist.github.com/rchakra3). For easier use, use names of the file as mentioned in the shared link.   
 3. Change the following values in the `config.ini` file under the `Azure` section
-    - Service_Certificate_Thumbprint: Thumbprint of the `myCert.pem` file 
-    - API_Connection_Cert_Path: Path to `everything.pem` file
-    - Public_Key_Upload_Path: Path of the public key to be uplaoded `id_rsa.pub`
-    - Cert_Upload_Path: Path of the certificate to be uplaoded `myCert.pem` 
+    - *Service_Certificate_Thumbprint*: Thumbprint of the `myCert.pem` file 
+    - *API_Connection_Cert_Path*: Path to `everything.pem` file
+    - *Public_Key_Upload_Path*: Path of the public key to be uplaoded `id_rsa.pub`
+    - *Cert_Upload_Path*: Path of the certificate to be uplaoded `myCert.pem` 
    
 ## Deployment using ansible
 The inventory file generated using the above step can be directly consumed by an ansible playbook to make the necessary installation on the newly provisioned VMs.
