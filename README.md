@@ -32,6 +32,7 @@ berserk-pike ansible_ssh_host=104.131.105.168 ansible_ssh_user=root
 agitated-einstein ansible_ssh_host=agitated-einstein.cloudapp.net ansible_ssh_user=uname ansible_ssh_private_key_file=id_rsa
 ```
 
+<<<<<<< HEAD
 ### DigitalOcean account setup
 1. Create an account at [DigitalOcean](https://cloud.digitalocean.com/registrations/new "DigitalOcean Signup")
 2. Move to [API menu](https://cloud.digitalocean.com/settings/applications)
@@ -48,6 +49,8 @@ agitated-einstein ansible_ssh_host=agitated-einstein.cloudapp.net ansible_ssh_us
     - Cert_Upload_Path: Path of the certificate to be uplaoded `myCert.pem` 
    
 
+=======
+>>>>>>> 79b116d407e5062e0297160f6515927c0af1cd71
 ## Deployment using ansible
 The inventory file generated using the above step can be directly consumed by an ansible playbook to make the necessary installation on the newly provisioned VMs.
 As an example, a simple playbook is wirtten which installs and starts the **nginx** server on the servers provided by the inventory file.
