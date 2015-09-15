@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: root
+  sudo: yes
   tasks:
   - name: install nginx on the node
     apt: 

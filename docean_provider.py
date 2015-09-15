@@ -13,9 +13,10 @@ class DigitalOceanProvider(ServiceProvider):
 
 	def create_instance(self):
 		print "creating a digital ocean instance using url: ",self.base_url
-		droplet_id = self.__create_droplet()
+		name = namesgenerator.get_random_name()
+		droplet_id = self.__create_droplet(name)
 		print droplet_id
-		return self.__check_if_droplet_is_up(droplet_id)
+		return (name, self.__check_if_droplet_is_up(droplet_id), "root")
 		#self.__delete_droplet(droplet_id)
 
 	def __delete_droplet(self, id):
@@ -29,9 +30,9 @@ class DigitalOceanProvider(ServiceProvider):
 				return response["droplet"]["networks"]["v4"][0]["ip_address"]
 			time.sleep(1)
 
-	def __create_droplet(self):
+	def __create_droplet(self, name):
 		params = {
-			"name": namesgenerator.get_random_name(),
+			"name": name,
 			"region": self.__get_random_region(),
 			"size": "512mb",
 			"image": "ubuntu-14-04-x64",
