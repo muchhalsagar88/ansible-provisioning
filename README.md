@@ -2,6 +2,7 @@
 Provisioning servers and deplyoing using ansible
 
 ## Provisioning servers
+<<<<<<< HEAD
 To provision servers, currently two providers namely, **([DigitalOcean]https://cloud.digitalocean.com/registrations/new) and ([Windows Azure]https://azure.microsoft.com/en-us/pricing/free-trial/)** are being used. Sepearate accounts need to be created for both the cloud providers.
 
 To run the provisioning script, use
