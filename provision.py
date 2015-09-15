@@ -28,10 +28,12 @@ mode = args.write_mode
 if provider=="DigitalOcean":
 	di = DigitalOceanProvider("https://api.digitalocean.com", "DigitalOcean")
 	(node_name, ip_address, user) = di.create_instance()
+	print "Created VM"
 	write_to_inventory_file(mode, node_name, ip_address, user)
 else:
 	ap = AzureProvider("abc", "Azure")
 	(node_name, ip_address, user) = ap.create_instance()
+	print "Created VM"
 	write_to_inventory_file(mode, node_name, ip_address, user, 'id_rsa')
 
 print "Node created at address: ",ip_address

@@ -15,11 +15,14 @@ class AzureProvider(ServiceProvider):
 		self.section_name = section_name
 		super(AzureProvider, self).__init__()
 
-	def create_instance(self):
+	def create_instance(self, create_entire_stack=False):
 		cloud_service_name = self.__create_cloud_service()
-		storage_service_name = self.__create_storage_service()
-		# To ensure that the storage service is up
-		time.sleep(3)
+		if create_entire_stack:
+			storage_service_name = self.__create_storage_service()
+			# To ensure that the storage service is up
+			time.sleep(3)
+		else:
+			storage_service_name = self.get_property(self.section_name, "DEFAULT_STORAGE_SERVICE")
 		blob_container_url = self.__create_blob_container(storage_service_name)
 		return self.__create_actual_vm(blob_container_url, cloud_service_name)
 
@@ -142,6 +145,5 @@ class AzureProvider(ServiceProvider):
 		    network_config=endpoint_config,
 		    os_virtual_hard_disk=os_hd,
 		    role_size='Small')
-		print "Created VM"
 		return (hosted_service_name, hosted_service_name+'.cloudapp.net', 
 			self.get_property(self.section_name, "VM_Default_Username"))
