@@ -1,6 +1,7 @@
 import requests, json, time, os, base64
 import base_provider, namesgenerator, random
 from base_provider import ServiceProvider
+import time
 from azure import *
 from azure.servicemanagement import *
 from azure.storage.blob import BlobService
@@ -17,6 +18,8 @@ class AzureProvider(ServiceProvider):
 	def create_instance(self):
 		cloud_service_name = self.__create_cloud_service()
 		storage_service_name = self.__create_storage_service()
+		# To ensure that the storage service is up
+		time.sleep(3)
 		blob_container_url = self.__create_blob_container(storage_service_name)
 		return self.__create_actual_vm(blob_container_url, cloud_service_name)
 
