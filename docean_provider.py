@@ -12,10 +12,10 @@ class DigitalOceanProvider(ServiceProvider):
 		super(DigitalOceanProvider, self).__init__()
 
 	def create_instance(self):
-		print "creating a digital ocean instance using url: ",self.base_url
+		#print "creating a digital ocean instance using url: ",self.base_url
 		name = namesgenerator.get_random_name()
 		droplet_id = self.__create_droplet(name)
-		print droplet_id
+		#print droplet_id
 		return (name, self.__check_if_droplet_is_up(droplet_id), "root")
 		#self.__delete_droplet(droplet_id)
 
@@ -26,7 +26,7 @@ class DigitalOceanProvider(ServiceProvider):
 		for i in range(0, 20):
 			response = self.__request(self.base_url, "GET", "/v2/droplets/"+str(id))
 			if len(response["droplet"]["networks"]["v4"]) is not 0:
-				print type(response["droplet"]["networks"]["v4"][0]["ip_address"])
+				#print type(response["droplet"]["networks"]["v4"][0]["ip_address"])
 				return response["droplet"]["networks"]["v4"][0]["ip_address"]
 			time.sleep(1)
 
@@ -42,8 +42,8 @@ class DigitalOceanProvider(ServiceProvider):
 			"user_data": "null",
 			"private_networking": "null"
 		}
-		print str(params)
-		print json.dumps(params)
+		#print str(params)
+		#print json.dumps(params)
 		response = self.__request(self.base_url, "POST", "/v2/droplets", json.dumps(params))#, headers)
 		if response is not None :
 			return response['droplet']['id']
@@ -63,7 +63,7 @@ class DigitalOceanProvider(ServiceProvider):
 	def __request(self, base_url, method, relative_url, params=None, headers=None):
 		acc_token = self.get_property(self.section_name, DigitalOceanProvider.TOKEN_OPTION_NAME)
 		access_url = base_url + relative_url
-		print access_url
+		#print access_url
 		if headers is None:
 			headers = {
 				"Content-Type":"application/json",
@@ -76,11 +76,11 @@ class DigitalOceanProvider(ServiceProvider):
 		elif method is "DELETE":
 			r = requests.delete(access_url, headers=headers)
 
-		print r.status_code
+		#print r.status_code
 		p = re.compile("^[2][0-9]{2}")
 		if p.match(str(r.status_code)):
 			resp = r.text
-			print json.loads(resp)#, sort_keys=True, indent=4, separators=(',', ': '))
+			#print json.loads(resp)#, sort_keys=True, indent=4, separators=(',', ': '))
 			return json.loads(resp)
 			#return json.loads(response.read())	
 		return None
